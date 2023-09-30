@@ -11,3 +11,6 @@ Hauptdateien
 Andere Dataeien
 
 + [001-Data_Import.R](code/001-Data_Import.R)
+
+
+Copyright 2023
