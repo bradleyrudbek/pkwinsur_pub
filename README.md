@@ -7,6 +7,8 @@ Hauptdateien
 
 + [Präsentation Datei (PDF)](präsi-datachallenge.pdf)
 + [EDA Notebook](notebooks/EDA-general.ipynb)
++ [Model-Training.ipynb](notebooks/Model-Training.ipynb)
++ [Code Files](code/)
 
 Andere Dataeien
 
