@@ -5,4 +5,9 @@
 
 Relevant Files
 
-[I'm a relative reference to a repository file](präsi-datachallenge.pdf)
++ [Präsentation Datei (PDF)](präsi-datachallenge.pdf)
++ [EDA Notebook](code/EDA-general.ipynb)
+
+
+
+
