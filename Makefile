@@ -9,6 +9,11 @@ copy:
 	cp ../Rwork/sandbox/EDA-general.ipynb notebooks/
 	cp ../Rwork/sandbox/Model-Training.ipynb notebooks/
 
+push:
+	git add .
+	git commit -m 'auto commit'
+	git push
+
 
 
 
