@@ -37,5 +37,9 @@ require('farff')
         msev3 <- data.frame(IDpol =  as.numeric(names(tapply(msev2$ClaimAmount, msev2$IDpol, sum))), sumClaims = as.vector(tapply(msev2$ClaimAmount, msev2$IDpol, sum)))
         m1 <- merge(Mfreq , msev3, all.x = TRUE, all.y = FALSE, by = 'IDpol')
         cm1 <- subset(m1, !is.na(sumClaims))
-        cm1$target <- cm1$sumClaims/cm1$Exposure
+	# We noticed some artifacts in the models when working directly with 
+	# sumClaims
+	# transforming to AvgClaims hoping it will fix it
+	cm1$AvgClaims <- cm1$sumClaims / cm1$ClaimNb
+	cm1$target <- cm1$AvgClaims/cm1$Exposure
         # We stop here for EDA

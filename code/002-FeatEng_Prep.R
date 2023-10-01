@@ -20,14 +20,7 @@
         # the factor levels will be all aligned
         m2 <- m1
 
-        # Stage 2 Transformations can be done here
-        # we don't use any of these variables in Stage 1
-        # anyways
-
-        m2$sumClaims <- pmin(m2$sumClaims,15000)
-        m2$target <- m2$sumClaims/m2$Exposure
-        m2$target <- pmin(m2$target,150000)
-
+	# Stage 1 Transforms
 
         m2$VehPower <- as.factor(pmin(m1$VehPower,9))
         m2$VehGas  <- as.factor(m1$VehGas)
@@ -38,3 +31,14 @@
         m2$BonusMalus <-  as.integer(pmin(m1$BonusMalus, 150))
 
 	cm2 <- subset(m2, !is.na(sumClaims))
+	# Pushing Stage 2 Transformations here to avoid the Hassle of NAs
+
+	cm2$sumClaims <- pmin(cm2$sumClaims,15000)
+        cm2$AvgClaims <- cm2$sumClaims/cm2$ClaimNb
+        cm2$target <- cm2$AvgClaims/cm2$Exposure
+        cm2$target <- pmin(cm2$target,150000)
+
+
+	# Now we have to merge target and AvgClaims back to m2 so we don't break the
+	# Data_Split Pipeline
+        m2 <- merge(m2 , subset(cm2, select = c(IDpol,AvgClaims,target)), all.x = TRUE, all.y = TRUE, by = 'IDpol')
